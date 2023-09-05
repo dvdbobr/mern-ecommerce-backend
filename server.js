@@ -21,7 +21,10 @@ app.use("/api/products", productRouter);
 const uri = process.env.MONGODB_URL;
 
 try {
-  mongoose.connect(uri);
+  mongoose.connect(
+    "mongodb+srv://dvdbobr:dvdbobr123@ecommerce.sqggh.mongodb.net/ecommerce?retryWrites=true&w=majority"
+  );
+  // mongoose.connect(uri);
 } catch (error) {
   console.log(error);
 }
