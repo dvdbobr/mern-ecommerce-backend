@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 // const auth = require("../middleware/auth");
 // const authAdmin = require("../middleware/authAdmin");
-//const paginatedResult = require('../middleware/paginatedResult')
+const paginatedResult = require("../middleware/paginatedResult");
 const productController = require("../controllers/products.controller");
 
 router

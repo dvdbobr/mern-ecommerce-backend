@@ -9,26 +9,10 @@ const getProducts = async (req, res) => {
   }
 };
 const getPaginatedProducts = async (req, res) => {
-  // const page = Number(req.query.pageNumber)||1
-  //const limit = parseInt(req.query.limit)
-  // const startIndex = (page - 1) * limit
-  // const endIndex = page * limit
   const pageLimit = 8;
   const page = parseInt(req.query.page) || 1; // 1 if not included
 
   try {
-    // const results = {}
-    // if (endIndex < products.length)
-    //     results.next = {
-    //         page: page + 1,
-    //         limit: limit
-    //     }
-    // if (startIndex > 0) {
-    //     results.previous = {
-    //         page: page - 1,
-    //         limit: limit
-    //     }
-    // }
     const keyword = req.query.keyword
       ? {
           title: {
@@ -43,7 +27,6 @@ const getPaginatedProducts = async (req, res) => {
       .limit(pageLimit)
       .skip(pageLimit * (page - 1));
 
-    //results.results = products.slice(startIndex, endIndex)
     return res.send({ products, page, pages: Math.ceil(count / pageLimit) });
   } catch (err) {
     return res.status(500).json({ message: err.message });
