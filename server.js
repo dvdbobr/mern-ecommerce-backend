@@ -4,27 +4,27 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const app = express();
 // const path = require("path");
-// const userRouter = require("./routes/users.route");
+const userRouter = require("./routes/users.route");
 const productRouter = require("./routes/products.route");
-// const categoryRouter = require("./routes/category.route");
-// const orderRouter = require("./routes/order.route");
+const categoryRouter = require("./routes/categories.route");
+const orderRouter = require("./routes/orders.route");
 const port = 8000;
 
 app.use(express.json());
 app.use(cors());
-app.get("/api/getUser", (req, res) => {
-  const user = "David";
-  res.json(user);
-});
+
+app.use("/api/users", userRouter);
 app.use("/api/products", productRouter);
+app.use("/api/category", categoryRouter);
+app.use("/api/order", orderRouter);
 
 const uri = process.env.MONGODB_URL;
 
 try {
-  mongoose.connect(
-    "mongodb+srv://dvdbobr:dvdbobr123@ecommerce.sqggh.mongodb.net/ecommerce?retryWrites=true&w=majority"
-  );
-  // mongoose.connect(uri);
+  // mongoose.connect(
+  //   "mongodb+srv://dvdbobr:dvdbobr123@ecommerce.sqggh.mongodb.net/ecommerce?retryWrites=true&w=majority"
+  // );
+  mongoose.connect(uri);
 } catch (error) {
   console.log(error);
 }
