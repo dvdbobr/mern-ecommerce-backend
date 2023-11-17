@@ -1,8 +1,7 @@
 const express = require("express");
 const router = express.Router();
-// const auth = require("../middleware/auth");
-// const authAdmin = require("../middleware/authAdmin");
-const paginatedResult = require("../middleware/paginatedResult");
+const auth = require("../middleware/auth");
+const authAdmin = require("../middleware/authAdmin");
 const productController = require("../controllers/products.controller");
 
 router
@@ -15,15 +14,15 @@ router
   .get("/:id", (req, res) => {
     productController.getProductById(req, res);
   })
-  //   .post("/", auth, authAdmin, (req, res) => {
-  //     productController.createProduct(req, res);
-  //   })
-  //   .delete("/:id", auth, authAdmin, (req, res) => {
-  //     productController.deleteProductById(req, res);
-  //   })
-  //   .put("/:id", auth, authAdmin, (req, res) => {
-  //     productController.updateProduct(req, res);
-  //   })
+  .post("/", auth, authAdmin, (req, res) => {
+    productController.createProduct(req, res);
+  })
+  .delete("/:id", auth, authAdmin, (req, res) => {
+    productController.deleteProductById(req, res);
+  })
+  .put("/:id", auth, authAdmin, (req, res) => {
+    productController.updateProduct(req, res);
+  })
   .put("/updateProductStock/:id", (req, res) => {
     productController.updatedCountInStock(req, res);
   });

@@ -10,7 +10,6 @@ const makeOrder = async (req, res) => {
       taxPrice,
       totalPrice,
     } = req.body;
-    // if (!images) return res.status(400).json({ message: 'no images given' })
     if (orderItems && orderItems.length === 0) {
       return res.status(400).send({ message: "No items in order" });
     } else {
